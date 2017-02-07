@@ -1,0 +1,79 @@
+/**
+ * base
+ */
+input[type=text] {
+  width: 100%;
+}
+
+/**
+ * tree
+ */
+.tree {
+  white-space: nowrap;
+}
+.tree .level {
+  display: inline-block;
+  width: 250px;
+}
+.tree .level .item {
+  position: relative;
+}
+.tree .level .item:hover .actions-nav {
+  display: block;
+}
+.tree .level .item.editing .name .edit {
+  display: inline;
+}
+.tree .level .item.adding .add-nav {
+  display: block;
+}
+.tree .level .item .name {
+  cursor: pointer;
+}
+.tree .level .item .name .read {
+}
+.tree .level .item .name .edit {
+  display: none;
+}
+.tree .level .item.editing .read {
+  display: none;
+}
+.tree .level .item .name input {
+  border: none;
+  outline: none;
+}
+.tree .level .item .name label {
+  user-select: none;
+  cursor: pointer;
+  margin-bottom: 0;
+}
+
+/**
+ * add nav
+ */
+.add-nav {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translateY(-120%);
+}
+.add-nav .add-list {
+}
+.add-nav .add-list .add-item {
+  display: inline-block;
+}
+
+/**
+ * actions nav
+ */
+.actions-nav {
+  display: none;
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+}
+.actions-nav .actions-list .actions-item {
+  display: inline-block;
+}

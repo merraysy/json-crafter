@@ -10,8 +10,106 @@
 
     <!-- styles -->
     <link rel="stylesheet" href="%PUBLIC_URL%/css/bootstrap.min.css">
+    <link rel="stylesheet" href="%PUBLIC_URL%/css/main.css">
   </head>
   <body>
     <div id="root"></div>
+
+    <div class="container">
+      <nav class="tree">
+        <ul class="level list-unstyled">
+          <li class="item">
+            <div class="name panel panel-default">
+              <div class="panel-body">
+                <span class="read">Test <span class="label label-default">A-Z</span></span>
+                <span class="edit"><input type="text" name="input"></span>
+              </div>
+            </div>
+
+            <nav class="actions-nav">
+              <ul class="actions-list list-unstyled">
+                <li class="actions-item"><a href="#" class="remove-btn btn btn-danger btn-sm">&times;</a></li>
+              </ul>
+            </nav>
+          </li>
+
+          <li class="item">
+            <div class="name panel panel-default">
+              <div class="panel-body">
+                <span class="read">Number <span class="label label-primary">0-9</span></span>
+                <span class="edit"><input type="text" name="input"></span>
+              </div>
+            </div>
+
+            <nav class="actions-nav">
+              <ul class="actions-list list-unstyled">
+                <li class="actions-item"><a href="#" class="remove-btn btn btn-danger btn-sm">&times;</a></li>
+              </ul>
+            </nav>
+          </li>
+
+          <li class="item">
+            <div class="name panel panel-default">
+              <div class="panel-body">
+                <span class="read">Boolean <span class="label label-primary">0-9</span></span>
+                <span class="edit"><label><input type="checkbox" name="input"> Boolean</label></span>
+              </div>
+            </div>
+
+            <nav class="actions-nav">
+              <ul class="actions-list list-unstyled">
+                <li class="actions-item"><a href="#" class="remove-btn btn btn-danger btn-sm">&times;</a></li>
+              </ul>
+            </nav>
+          </li>
+
+          <li class="item">
+            <div class="name panel panel-default">
+              <div class="panel-body">
+                <span class="read">Object <span class="label label-warning">{...}</span></span>
+                <span class="edit"><input type="text" name="input"></span>
+              </div>
+            </div>
+
+            <nav class="actions-nav">
+              <ul class="actions-list list-unstyled">
+                <li class="actions-item"><a href="#" class="remove-btn btn btn-success btn-sm">&rarr;</a></li>
+                <li class="actions-item"><a href="#" class="remove-btn btn btn-danger btn-sm">&times;</a></li>
+              </ul>
+            </nav>
+          </li>
+
+          <li class="item">
+            <div class="name panel panel-default">
+              <div class="panel-body">
+                <span class="read">Array <span class="label label-danger">[...]</span></span>
+                <span class="edit"><input type="text" name="input"></span>
+              </div>
+            </div>
+
+            <nav class="actions-nav">
+              <ul class="actions-list list-unstyled">
+                <li class="actions-item"><a href="#" class="remove-btn btn btn-success btn-sm">&rarr;</a></li>
+                <li class="actions-item"><a href="#" class="remove-btn btn btn-danger btn-sm">&times;</a></li>
+              </ul>
+            </nav>
+          </li>
+
+          <li class="item text-center">
+            <nav class="add-nav">
+              <ul class="add-list list-unstyled">
+                <li class="add-item string"><a href="#" class="btn btn-xs btn-default">A-Z</a></li>
+                <li class="add-item number"><a href="#" class="btn btn-xs btn-primary">0-9</a></li>
+                <li class="add-item number"><a href="#" class="btn btn-xs btn-info">Bool</a></li>
+                <li class="add-item object"><a href="#" class="btn btn-xs btn-warning">{...}</a></li>
+                <li class="add-item array"><a href="#" class="btn btn-xs btn-danger">[...]</a></li>
+              </ul>
+            </nav>
+
+            <a href="#" class="btn btn-success btn-block">+ add</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
   </body>
 </html>
