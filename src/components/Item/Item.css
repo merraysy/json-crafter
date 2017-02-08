@@ -1,0 +1,31 @@
+/**
+ * item
+ */
+.item {
+  position: relative;
+}
+.item:hover .actions-nav {
+  display: block;
+}
+.item.adding .add-nav {
+  display: block;
+}
+.item .content {
+  cursor: pointer;
+}
+.item .content .read {
+}
+.item.editing .content .read {
+}
+.item .content .edit {
+}
+.item.editing .content .edit {
+  display: inline;
+}
+.item .content input {
+}
+.item .content label {
+  user-select: none;
+  cursor: pointer;
+  margin-bottom: 0;
+}

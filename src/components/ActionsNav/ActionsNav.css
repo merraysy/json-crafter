@@ -1,0 +1,13 @@
+/**
+ * actions nav
+ */
+.actions-nav {
+  display: none;
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+}
+.actions-nav .actions-list .actions-item {
+  display: inline-block;
+}

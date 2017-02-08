@@ -1,0 +1,12 @@
+/**
+ * add nav
+ */
+.add-nav  {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translateY(-120%);
+}
+.add-nav .add-list .add-item {
+  display: inline-block;
+}
