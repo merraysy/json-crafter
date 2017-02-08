@@ -11,7 +11,7 @@ import Level from '../../components/Level';
 import './Tree.css';
 
 // utils
-import { addKeys } from '../../utils';
+import { addKeys, genId } from '../../utils';
 
 class Tree extends Component {
   constructor(props) {
@@ -24,7 +24,7 @@ class Tree extends Component {
 
   addLevelItem(type, parentId) {
     const item = {
-      id: 'randomId',
+      id: genId(),
       name: '',
       value: '',
       type,
@@ -57,8 +57,8 @@ class Tree extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    items: state.tree.items,
-    levels: state.tree.levels
+    items: state.tree.get('items').toJS(),
+    levels: state.tree.get('levels').toJS()
   };
 };
 
