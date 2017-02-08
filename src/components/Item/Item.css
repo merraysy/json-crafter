@@ -16,6 +16,9 @@
   cursor: pointer;
   display: block;
 }
+.item .content .read .label {
+  margin-left: 5px;
+}
 .item.editing .content .read {
 }
 .item .content .edit {

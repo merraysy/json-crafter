@@ -7,6 +7,13 @@ export const addItem = (payload) => {
   };
 }; // end-addItem
 
+export const saveItem = (payload) => {
+  return {
+    type: actionTypes.SAVE_ITEM,
+    payload
+  };
+}; // end-saveItem
+
 export const removeItem = (id) => {
   return {
     type: actionTypes.REMOVE_ITEM,
@@ -20,3 +27,10 @@ export const startEditing = (id) => {
     payload: { id }
   };
 }; // end-startEditing
+
+export const endEditing = (id) => {
+  return {
+    type: actionTypes.END_EDITING,
+    payload: { id }
+  };
+}; // end-endEditing

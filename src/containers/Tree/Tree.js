@@ -19,7 +19,9 @@ class Tree extends Component {
 
     // bind `this`
     this.addLevelItem = this.addLevelItem.bind(this);
+    this.endEditing = this.endEditing.bind(this);
     this.getLevelItems = this.getLevelItems.bind(this);
+    this.saveItem = this.saveItem.bind(this);
     this.startEditing = this.startEditing.bind(this);
     this.removeLevelItem = this.removeLevelItem.bind(this);
   } // end-constructor
@@ -34,30 +36,42 @@ class Tree extends Component {
     this.props.dispatch(treeActions.startEditing(id));
   } // end-startEditing
 
+  endEditing(id) {
+    this.props.dispatch(treeActions.endEditing(id));
+  } // end-endEditing
+
   addLevelItem(type, parentId) {
+    const id = genId();
     const item = {
-      id: genId(),
-      name: 'no_name',
+      id,
+      name: '',
       value: '',
+      isEditing: true,
       type,
       parentId
     };
     this.props.dispatch(treeActions.addItem(item));
-    // this.startEditing();
+    this.startEditing(id);
   } // end-addLevelItem
 
   removeLevelItem(id) {
     this.props.dispatch(treeActions.removeItem(id));
   } // end-removeLevelItem
 
+  saveItem(data) {
+    this.props.dispatch(treeActions.saveItem(data));
+  } // end-saveItem
+
   render() {
     const levels = this.props.levels.map((level) => {
       return <Level
         addLevelItem={this.addLevelItem}
-        removeLevelItem={this.removeLevelItem}
+        endEditing={this.endEditing}
         items={this.getLevelItems(level.parentId)}
-        isEditing={this.props.isEditing}
-        parentId={level.parentId} />;
+        parentId={level.parentId}
+        removeLevelItem={this.removeLevelItem}
+        startEditing={this.startEditing}
+        saveItem={this.saveItem} />;
     });
 
     return (
@@ -71,8 +85,7 @@ class Tree extends Component {
 const mapStateToProps = (state) => {
   return {
     items: state.tree.get('items').toJS(),
-    levels: state.tree.get('levels').toJS(),
-    isEditing: state.tree.get('isEditing')
+    levels: state.tree.get('levels').toJS()
   };
 };
 

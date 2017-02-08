@@ -15,7 +15,7 @@ class Item extends Component {
         <div className="content panel panel-default">
           <div className="panel-body">
             {
-              (!this.props.isEditing)
+              (!this.props.item.isEditing)
               ? <ItemRead {...this.props} />
               : <ItemEdit {...this.props} />
             }
@@ -23,7 +23,7 @@ class Item extends Component {
         </div>
 
         {
-          (!this.props.isEditing)
+          (!this.props.item.isEditing)
           ? <ActionsNav {...this.props} />
           : ''
         }
