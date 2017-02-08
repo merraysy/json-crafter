@@ -11,9 +11,10 @@
   display: block;
 }
 .item .content {
-  cursor: pointer;
 }
 .item .content .read {
+  cursor: pointer;
+  display: block;
 }
 .item.editing .content .read {
 }

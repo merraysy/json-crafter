@@ -14,12 +14,19 @@ class Item extends Component {
       <li className="item">
         <div className="content panel panel-default">
           <div className="panel-body">
-            <ItemRead {...this.props} />
-            <ItemEdit {...this.props} />
+            {
+              (!this.props.isEditing)
+              ? <ItemRead {...this.props} />
+              : <ItemEdit {...this.props} />
+            }
           </div>
         </div>
 
-        <ActionsNav />
+        {
+          (!this.props.isEditing)
+          ? <ActionsNav {...this.props} />
+          : ''
+        }
       </li>
     );
   }

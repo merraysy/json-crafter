@@ -4,3 +4,14 @@
 .add-level-item:hover .add-nav {
   display: block;
 }
+.add-level-item .field {
+  text-transform: uppercase;
+  padding: 5px;
+  font-size: 12px;
+  line-height: 20px;
+  font-weight: bold;
+  border: 1px dashed #28b62c;
+  color: #28b62c;
+  border-radius: 4px;
+  cursor: pointer;
+}

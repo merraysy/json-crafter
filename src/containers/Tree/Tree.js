@@ -20,18 +20,9 @@ class Tree extends Component {
     // bind `this`
     this.addLevelItem = this.addLevelItem.bind(this);
     this.getLevelItems = this.getLevelItems.bind(this);
+    this.startEditing = this.startEditing.bind(this);
+    this.removeLevelItem = this.removeLevelItem.bind(this);
   } // end-constructor
-
-  addLevelItem(type, parentId) {
-    const item = {
-      id: genId(),
-      name: '',
-      value: '',
-      type,
-      parentId
-    };
-    this.props.dispatch(treeActions.addItem(item));
-  } // end-addLevelItem
 
   getLevelItems(parentId) {
     return this.props.items.filter((item) => {
@@ -39,11 +30,33 @@ class Tree extends Component {
     });
   } // end-getLevelItems
 
+  startEditing(id) {
+    this.props.dispatch(treeActions.startEditing(id));
+  } // end-startEditing
+
+  addLevelItem(type, parentId) {
+    const item = {
+      id: genId(),
+      name: 'no_name',
+      value: '',
+      type,
+      parentId
+    };
+    this.props.dispatch(treeActions.addItem(item));
+    // this.startEditing();
+  } // end-addLevelItem
+
+  removeLevelItem(id) {
+    this.props.dispatch(treeActions.removeItem(id));
+  } // end-removeLevelItem
+
   render() {
     const levels = this.props.levels.map((level) => {
       return <Level
         addLevelItem={this.addLevelItem}
+        removeLevelItem={this.removeLevelItem}
         items={this.getLevelItems(level.parentId)}
+        isEditing={this.props.isEditing}
         parentId={level.parentId} />;
     });
 
@@ -58,7 +71,8 @@ class Tree extends Component {
 const mapStateToProps = (state) => {
   return {
     items: state.tree.get('items').toJS(),
-    levels: state.tree.get('levels').toJS()
+    levels: state.tree.get('levels').toJS(),
+    isEditing: state.tree.get('isEditing')
   };
 };
 

@@ -6,3 +6,17 @@ export const addItem = (payload) => {
     payload
   };
 }; // end-addItem
+
+export const removeItem = (id) => {
+  return {
+    type: actionTypes.REMOVE_ITEM,
+    payload: { id }
+  };
+}; // end-removeItem
+
+export const startEditing = (id) => {
+  return {
+    type: actionTypes.START_EDITING,
+    payload: { id }
+  };
+}; // end-startEditing

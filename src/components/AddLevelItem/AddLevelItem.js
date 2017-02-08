@@ -11,7 +11,7 @@ class AddLevelItem extends Component {
     return (
       <li className="item add-level-item text-center">
         <AddNav {...this.props} />
-        <a href="#" className="btn btn-success btn-block">+ add</a>
+        <div className="field">add</div>
       </li>
     );
   }

@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 
 class ItemEdit extends Component {
   render() {
-    const { id, name, type, value } = this.props;
+    const { id, name, type, value } = this.props.item;
     let valueInput;
     switch (type) {
       case 'string':
-        valueInput = <input className="form-control" type="text" name="value" placeholder="Foo" />
+        valueInput = <input className="form-control" type="text" name="value" placeholder="Foo" value={value} />
         break;
       case 'number':
-        valueInput = <input className="form-control" type="number" name="value" placeholder="123" />
+        valueInput = <input className="form-control" type="number" name="value" placeholder="123" value={value} />
         break;
       case 'boolean':
         valueInput = <div className="checkbox"><label><input type="checkbox" name="value" />Boolean</label></div>
@@ -24,7 +24,7 @@ class ItemEdit extends Component {
     return (
       <form className="edit" onSubmit={handleSubmit}>
         <div className="form-group">
-          <input className="form-control" type="text" name="name" placeholder="Name" value={value} />
+          <input className="form-control" type="text" name="name" placeholder="Name" value={name} />
         </div>
         <div className="form-group">
           {valueInput}

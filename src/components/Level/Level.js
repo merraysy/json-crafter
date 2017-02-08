@@ -13,7 +13,7 @@ import { addKeys } from '../../utils';
 class Level extends Component {
   render() {
     const items = this.props.items.map((item) => {
-      return <Item {...item} />;
+      return <Item {...this.props} item={item} />;
     });
 
     return (

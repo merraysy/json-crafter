@@ -5,8 +5,8 @@
   display: none;
   position: absolute;
   top: 0;
-  right: 0;
-  transform: translateY(-100%);
+  left: 50%;
+  transform: translate(-50%, -100%);
 }
 .add-nav .add-list .add-item {
   display: inline-block;

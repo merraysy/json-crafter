@@ -1,5 +1,7 @@
 import keyMirror from 'keymirror';
 
 export default keyMirror({
-  ADD_ITEM: null
+  ADD_ITEM: null,
+  REMOVE_ITEM: null,
+  START_EDITING: null
 });
