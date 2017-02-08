@@ -4,4 +4,8 @@
 .level {
   display: inline-block;
   width: 250px;
+  margin-right: 10px;
+}
+.level:last-of-type {
+  margin-right: 0;
 }

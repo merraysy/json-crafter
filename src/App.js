@@ -10,7 +10,9 @@ class App extends Component {
   render() {
     return (
       <div className="container">
-        <h1>JSON Craftman!</h1>
+        <div className="page-header">
+          <h1>JSON Craftman!</h1>
+        </div>
 
         <Tree />
       </div>

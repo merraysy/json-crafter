@@ -1,0 +1,6 @@
+/**
+ * add level item
+ */
+.add-level-item:hover .add-nav {
+  display: block;
+}

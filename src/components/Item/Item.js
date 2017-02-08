@@ -14,8 +14,8 @@ class Item extends Component {
       <li className="item">
         <div className="content panel panel-default">
           <div className="panel-body">
-            <ItemRead />
-            <ItemEdit typeName="string" />
+            <ItemRead {...this.props} />
+            <ItemEdit {...this.props} />
           </div>
         </div>
 

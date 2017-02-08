@@ -1,8 +1,8 @@
-import actionTypes from '../constants';
+import { actionTypes } from '../constants';
 
-export const addProp = (payload) => {
+export const addItem = (payload) => {
   return {
-    type: actionTypes.ADD_PROP,
+    type: actionTypes.ADD_ITEM,
     payload
-  });
-}; // end-addProp
+  };
+}; // end-addItem

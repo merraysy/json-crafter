@@ -2,11 +2,16 @@
  * add nav
  */
 .add-nav  {
+  display: none;
   position: absolute;
   top: 0;
   right: 0;
-  transform: translateY(-120%);
+  transform: translateY(-100%);
 }
 .add-nav .add-list .add-item {
   display: inline-block;
+  margin-right: 2px;
+}
+.add-nav .add-list .add-item:last-of-type {
+  margin-right: 0;
 }

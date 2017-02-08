@@ -1,5 +1,5 @@
-import treeAction from './treeAction';
+import * as treeActions from './treeActions';
 
 export {
-  treeAction
+  treeActions
 };
