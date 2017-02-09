@@ -43,15 +43,18 @@ class Tree extends Component {
 
   addLevelItem(type, parentId) {
     const id = genId();
-    const item = {
+    let item = {
       id,
       name: '',
-      value: '',
       isEditing: true,
-      hasChildren: false,
       type,
       parentId
     };
+    if (type !== 'object' && type !== 'array') {
+      item.value = '';
+    } else {
+      item.hasChildren = false;
+    }
     this.props.dispatch(treeActions.addItem(item));
     this.startEditing(id);
   } // end-addLevelItem
