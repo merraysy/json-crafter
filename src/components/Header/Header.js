@@ -9,7 +9,7 @@ class Header extends Component {
       e.preventDefault();
       this.props.generate();
     };
-    
+
     return (
       <div className="page-header row">
         <div className="col-sm-6">
@@ -17,6 +17,11 @@ class Header extends Component {
         </div>
 
         <div className="col-sm-6 text-right">
+          {
+            (this.props.isSaved)
+            ? <span className="status text-success">Saved!</span>
+            : <span className="status text-warning">Changed!</span>
+          }
           <a className="btn btn-primary" onClick={clickHandler}>generate</a>
         </div>
       </div>

@@ -8,5 +8,7 @@ export default keyMirror({
   END_EDITING: null,
   OPEN_ITEM: null,
   CLOSE_ITEM: null,
-  CLOSE_SIBLING: null
+  CLOSE_SIBLING: null,
+  CHANGE: null,
+  SAVE: null
 });

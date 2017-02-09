@@ -55,3 +55,17 @@ export const closeSibling = (parentId, levelIndex) => {
     payload: { parentId, levelIndex }
   };
 }; // end-closeSibling
+
+export const change = () => {
+  return {
+    type: actionTypes.CHANGE,
+    payload: null
+  };
+}; // end-change
+
+export const save = () => {
+  return {
+    type: actionTypes.SAVE,
+    payload: null
+  };
+}; // end-save

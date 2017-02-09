@@ -11,3 +11,6 @@
   margin: 0;
   line-height: inherit;
 }
+.page-header .status {
+  margin-right: 10px;
+}

@@ -19,6 +19,8 @@ class Tree extends Component {
   constructor(props) {
     super(props);
 
+    this._saveTimeout = null;
+
     // bind `this`
     this.addLevelItem = this.addLevelItem.bind(this);
     this.closeItem = this.closeItem.bind(this);
@@ -31,6 +33,13 @@ class Tree extends Component {
     this.startEditing = this.startEditing.bind(this);
     this.removeLevelItem = this.removeLevelItem.bind(this);
   } // end-constructor
+
+  componentDidUpdate() {
+    clearTimeout(this._saveTimeout);
+    this._saveTimeout = setTimeout(() => {
+      this.props.dispatch(treeActions.save());
+    }, 2000);
+  } // end-componentDidUpdate
 
   getLevelItems(parentId) {
     return this.props.items.filter((item) => {
@@ -65,14 +74,17 @@ class Tree extends Component {
     }
     this.props.dispatch(treeActions.addItem(item));
     this.startEditing(id);
+    this.props.dispatch(treeActions.change());
   } // end-addLevelItem
 
   removeLevelItem(id) {
     this.props.dispatch(treeActions.removeItem(id));
+    this.props.dispatch(treeActions.change());
   } // end-removeLevelItem
 
   saveItem(data) {
     this.props.dispatch(treeActions.saveItem(data));
+    this.props.dispatch(treeActions.change());
   } // end-saveItem
 
   openItem(item, levelIndex) {
@@ -88,8 +100,7 @@ class Tree extends Component {
   } // end-closeSibling
 
   generate() {
-    console.log('Generating...');
-    fileDownload(JSON.stringify(buildTree(this.props.items)), 'json_craftman.json');
+    fileDownload(JSON.stringify(buildTree(this.props.items), null, '\t'), 'json_craftman.json');
   } // end-generate
 
   render() {
@@ -109,7 +120,9 @@ class Tree extends Component {
 
     return (
       <div className="container">
-        <Header generate={this.generate} />
+        <Header
+          generate={this.generate}
+          isSaved={this.props.isSaved} />
         <nav className="tree">
           {addKeys(levels)}
         </nav>
@@ -121,7 +134,8 @@ class Tree extends Component {
 const mapStateToProps = (state) => {
   return {
     items: state.tree.get('items').toJS(),
-    levels: state.tree.get('levels').toJS()
+    levels: state.tree.get('levels').toJS(),
+    isSaved: state.tree.get('isSaved')
   };
 };
 
