@@ -48,6 +48,7 @@ class Tree extends Component {
       name: '',
       value: '',
       isEditing: true,
+      hasChildren: false,
       type,
       parentId
     };
