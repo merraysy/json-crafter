@@ -1,22 +1,19 @@
 import { actionTypes } from '../constants';
 import Immutable from 'immutable';
 
-// utils
-import { recursiveMap } from '../utils';
-
 // helpers
 const closeItem = (state, closedItem, levelIndex) => {
-  const recursiveMap = (arr, id, mapper) => {
+  const recursiveModifier = (arr, id, modifier) => {
     const recurse = (objs, id) => {
       objs.forEach((child) => {
         if (child.parentId === id && child.hasChildren) {
-          child = mapper(child);
+          modifier(child);
           recurse(objs, child.id);
         }
       });
     };
     recurse(arr, id);
-  }; // end-recursiveMap
+  };
 
   const closedLevelIndex = levelIndex + 1;
   const levelsWithoutClosedLevel = state.get('levels').filterNot((level) => level.index >= closedLevelIndex);
@@ -26,15 +23,15 @@ const closeItem = (state, closedItem, levelIndex) => {
     }
     return mi;
   });
-  recursiveMap(itemsWithClosedItem, closedItem.id, (item) => {
+  recursiveModifier(itemsWithClosedItem, closedItem.id, (item) => {
     item.isOpened = false;
-    return item;
   });
   return state
     .set('levels', levelsWithoutClosedLevel)
     .set('items', itemsWithClosedItem);
-}; // end-closeItem
+};
 
+// initial state
 const initialState = Immutable.fromJS({
   items: [],
   levels: [

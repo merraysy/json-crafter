@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { treeActions } from '../../actions';
 
 // components
+import Header from '../../components/Header';
 import Level from '../../components/Level';
 
 // css
@@ -22,6 +23,7 @@ class Tree extends Component {
     this.closeItem = this.closeItem.bind(this);
     this.closeSibling = this.closeSibling.bind(this);
     this.endEditing = this.endEditing.bind(this);
+    this.generate = this.generate.bind(this);
     this.getLevelItems = this.getLevelItems.bind(this);
     this.openItem = this.openItem.bind(this);
     this.saveItem = this.saveItem.bind(this);
@@ -82,6 +84,10 @@ class Tree extends Component {
     this.props.dispatch(treeActions.closeSibling(parentId, levelIndex));
   } // end-closeSibling
 
+  generate() {
+    console.log('Generating...');
+  } // end-generate
+
   render() {
     const levels = this.props.levels.map((level) => {
       return <Level
@@ -98,9 +104,12 @@ class Tree extends Component {
     });
 
     return (
-      <nav className="tree">
-        {addKeys(levels)}
-      </nav>
+      <div className="container">
+        <Header generate={this.generate} />
+        <nav className="tree">
+          {addKeys(levels)}
+        </nav>
+      </div>
     );
   }
 }
