@@ -13,7 +13,7 @@ class ActionsNav extends Component {
   render() {
     const { openItem, removeLevelItem } = this.props;
     const { index: levelIndex } = this.props.level;
-    const { id, type } = this.props.item;
+    const { id, hasChildren, type } = this.props.item;
     const removeClickHandler = (e) => {
       e.preventDefault();
       removeLevelItem(id);
@@ -30,10 +30,12 @@ class ActionsNav extends Component {
         symbol="&rarr;"
         clickHandler={openClickHandler} />);
     }
-    btns.push(<ActionsItem
-      color="danger"
-      symbol="&times;"
-      clickHandler={removeClickHandler} />);
+    if (!hasChildren) {
+      btns.push(<ActionsItem
+        color="danger"
+        symbol="&times;"
+        clickHandler={removeClickHandler} />);
+    }
 
     return (
       <nav className="actions-nav">

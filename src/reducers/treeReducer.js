@@ -1,5 +1,5 @@
 import { actionTypes } from '../constants';
-import Immutable, { Map } from 'immutable';
+import Immutable from 'immutable';
 
 const initialState = Immutable.fromJS({
   items: [],
@@ -32,7 +32,14 @@ export default (state = initialState, action) => {
       break;
     case actionTypes.REMOVE_ITEM:
       console.log(action.type);
-      return state.set('items', state.get('items').filter((item) => item.id !== action.payload.id));
+      const itemsWithoutRemovedItem = state.get('items')
+        .filter((item) => item.id !== action.payload.id)
+        .map((item) => {
+          const foundItem = state.get('items').find((fi) => fi.parentId === item.id && fi.id !== action.payload.id);
+          if (!foundItem) item.hasChildren = false;
+          return item;
+        });
+      return state.set('items', itemsWithoutRemoved);
       break;
     case actionTypes.START_EDITING:
       console.log(action.type);
