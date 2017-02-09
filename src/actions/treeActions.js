@@ -41,3 +41,10 @@ export const openItem = (item, levelIndex) => {
     payload: { item, levelIndex }
   };
 }; // end-openItem
+
+export const closeItem = (item, levelIndex) => {
+  return {
+    type: actionTypes.CLOSE_ITEM,
+    payload: { item, levelIndex }
+  };
+}; // end-closeItem

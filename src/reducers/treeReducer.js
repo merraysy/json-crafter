@@ -56,12 +56,12 @@ export default (state = initialState, action) => {
       return state.set('items', itemsWithEditedItem);
     case actionTypes.OPEN_ITEM:
       console.log(action.type);
-      const { item, levelIndex } = action.payload;
-      const newIndex = levelIndex + 1;
-      const levelsWithAddedLevel = state.get('levels').set(newIndex, { index: newIndex, parentId: item.id });
+      const { item: openedItem} = action.payload;
+      const openedLevelIndex = action.payload.levelIndex + 1;
+      const levelsWithAddedLevel = state.get('levels').set(openedLevelIndex, { index: openedLevelIndex, parentId: openedItem.id });
       const itemsWithToggledIsOpened = state.get('items').map((mi) => {
-        if (item.parentId === mi.parentId) {
-          if (item.id === mi.id) {
+        if (openedItem.parentId === mi.parentId) {
+          if (openedItem.id === mi.id) {
             mi.isOpened = true;
           } else {
             mi.isOpened = false;
@@ -72,6 +72,20 @@ export default (state = initialState, action) => {
       return state
         .set('levels', levelsWithAddedLevel)
         .set('items', itemsWithToggledIsOpened);
+    case actionTypes.CLOSE_ITEM:
+      console.log(action.type);
+      const { item: closedItem } = action.payload;
+      const closedLevelIndex = action.payload.levelIndex + 1;
+      const levelsWithoutClosedLevel = state.get('levels').remove(closedLevelIndex);
+      const itemsWithClosedItem = state.get('items').map((mi) => {
+        if (closedItem.id === mi.id) {
+          mi.isOpened = false;
+        }
+        return mi;
+      });
+      return state
+        .set('levels', levelsWithoutClosedLevel)
+        .set('items', itemsWithClosedItem);
     default:
       return state;
   }
