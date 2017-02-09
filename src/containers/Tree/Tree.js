@@ -63,8 +63,8 @@ class Tree extends Component {
     this.props.dispatch(treeActions.saveItem(data));
   } // end-saveItem
 
-  openItem(id) {
-    this.props.dispatch(treeActions.openItem(id));
+  openItem(id, levelIndex) {
+    this.props.dispatch(treeActions.openItem(id, levelIndex));
   } // end-openItem
 
   render() {

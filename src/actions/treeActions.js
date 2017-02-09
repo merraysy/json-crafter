@@ -35,9 +35,9 @@ export const endEditing = (id) => {
   };
 }; // end-endEditing
 
-export const openItem = (id) => {
+export const openItem = (id, levelIndex) => {
   return {
     type: actionTypes.OPEN_ITEM,
-    payload: { id }
+    payload: { id, levelIndex }
   };
 }; // end-openItem

@@ -5,6 +5,7 @@ const initialState = Immutable.fromJS({
   items: [],
   levels: [
     {
+      index: 0,
       parentId: null
     }
   ]
@@ -29,9 +30,9 @@ export default (state = initialState, action) => {
       break;
     case actionTypes.REMOVE_ITEM:
       console.log(action.type);
-      const item = items.find((item) => item.id === action.payload.id);
-      const index = items.indexOf(item);
-      return state.set('items', items.remove(index));
+      return state
+        .set('items', items.filter((item) => item.id !== action.payload.id && item.parentId !== action.payload.id))
+        .set('levels', levels.filter((level) => level.parentId !== action.payload.id));
       break;
     case actionTypes.START_EDITING:
       console.log(action.type);
@@ -49,7 +50,8 @@ export default (state = initialState, action) => {
       break;
     case actionTypes.OPEN_ITEM:
       console.log(action.type);
-      return state.set('levels', levels.push({ parentId: action.payload.id }));
+      const newIndex = action.payload.levelIndex + 1;
+      return state.set('levels', levels.set(newIndex, { index: newIndex, parentId: action.payload.id }));
       break;
     default:
       return state;

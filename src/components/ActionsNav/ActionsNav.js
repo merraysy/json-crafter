@@ -12,6 +12,7 @@ import { addKeys } from '../../utils';
 class ActionsNav extends Component {
   render() {
     const { openItem, removeLevelItem } = this.props;
+    const { index: levelIndex } = this.props.level;
     const { id, type } = this.props.item;
     const removeClickHandler = (e) => {
       e.preventDefault();
@@ -19,7 +20,7 @@ class ActionsNav extends Component {
     };
     const openClickHandler = (e) => {
       e.preventDefault();
-      openItem(id);
+      openItem(id, levelIndex);
     };
     // set action btns
     let btns = [];
