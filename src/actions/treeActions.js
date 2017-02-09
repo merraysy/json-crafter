@@ -48,3 +48,10 @@ export const closeItem = (item, levelIndex) => {
     payload: { item, levelIndex }
   };
 }; // end-closeItem
+
+export const closeSibling = (parentId, levelIndex) => {
+  return {
+    type: actionTypes.CLOSE_SIBLING,
+    payload: { parentId, levelIndex }
+  };
+}; // end-closeSibling

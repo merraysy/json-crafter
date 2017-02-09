@@ -11,15 +11,16 @@ import { addKeys } from '../../utils';
 
 class ActionsNav extends Component {
   render() {
-    const { closeItem, openItem, removeLevelItem } = this.props;
+    const { closeItem, closeSibling, openItem, removeLevelItem } = this.props;
     const { index: levelIndex } = this.props.level;
-    const { id, isOpened, hasChildren, type } = this.props.item;
+    const { id, isOpened, hasChildren, type, parentId } = this.props.item;
     const removeClickHandler = (e) => {
       e.preventDefault();
       removeLevelItem(id);
     };
     const openClickHandler = (e) => {
       e.preventDefault();
+      closeSibling(parentId, levelIndex);
       openItem(this.props.item, levelIndex);
     };
     const closeClickHandler = (e) => {
