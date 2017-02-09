@@ -56,8 +56,22 @@ export default (state = initialState, action) => {
       return state.set('items', itemsWithEditedItem);
     case actionTypes.OPEN_ITEM:
       console.log(action.type);
-      const newIndex = action.payload.levelIndex + 1;
-      return state.set('levels', state.get('levels').set(newIndex, { index: newIndex, parentId: action.payload.id }));
+      const { item, levelIndex } = action.payload;
+      const newIndex = levelIndex + 1;
+      const levelsWithAddedLevel = state.get('levels').set(newIndex, { index: newIndex, parentId: item.id });
+      const itemsWithToggledIsOpened = state.get('items').map((mi) => {
+        if (item.parentId === mi.parentId) {
+          if (item.id === mi.id) {
+            mi.isOpened = true;
+          } else {
+            mi.isOpened = false;
+          }
+        }
+        return mi;
+      });
+      return state
+        .set('levels', levelsWithAddedLevel)
+        .set('items', itemsWithToggledIsOpened);
     default:
       return state;
   }

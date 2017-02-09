@@ -53,6 +53,7 @@ class Tree extends Component {
     if (type !== 'object' && type !== 'array') {
       item.value = '';
     } else {
+      item.isOpened = false;
       item.hasChildren = false;
     }
     this.props.dispatch(treeActions.addItem(item));
@@ -67,8 +68,8 @@ class Tree extends Component {
     this.props.dispatch(treeActions.saveItem(data));
   } // end-saveItem
 
-  openItem(id, levelIndex) {
-    this.props.dispatch(treeActions.openItem(id, levelIndex));
+  openItem(item, levelIndex) {
+    this.props.dispatch(treeActions.openItem(item, levelIndex));
   } // end-openItem
 
   render() {

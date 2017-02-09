@@ -12,7 +12,13 @@ class Item extends Component {
   render() {
     return (
       <li className="item">
-        <div className="content panel panel-default">
+        <div className="content panel panel-success">
+          {
+            (this.props.item.isOpened)
+            ? <div className="panel-heading">Opened</div>
+            : ''
+          }
+
           <div className="panel-body">
             {
               (!this.props.item.isEditing)

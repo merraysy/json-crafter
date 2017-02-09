@@ -13,22 +13,34 @@ class ActionsNav extends Component {
   render() {
     const { openItem, removeLevelItem } = this.props;
     const { index: levelIndex } = this.props.level;
-    const { id, hasChildren, type } = this.props.item;
+    const { id, isOpened, hasChildren, type } = this.props.item;
     const removeClickHandler = (e) => {
       e.preventDefault();
       removeLevelItem(id);
     };
     const openClickHandler = (e) => {
       e.preventDefault();
-      openItem(id, levelIndex);
+      openItem(this.props.item, levelIndex);
+    };
+    const closeClickHandler = (e) => {
+      e.preventDefault();
+      console.log('close');
+      // closeItem(this.props.item, levelIndex);
     };
     // set action btns
     let btns = [];
     if (type === 'object' || type === 'array') {
-      btns.push(<ActionsItem
-        color="success"
-        symbol="&rarr;"
-        clickHandler={openClickHandler} />);
+      if (isOpened) {
+        btns.push(<ActionsItem
+          color="default"
+          symbol="&larr;"
+          clickHandler={closeClickHandler} />);
+      } else {
+        btns.push(<ActionsItem
+          color="success"
+          symbol="&rarr;"
+          clickHandler={openClickHandler} />);
+      }
     }
     if (!hasChildren) {
       btns.push(<ActionsItem
