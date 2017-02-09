@@ -1,6 +1,9 @@
 import { actionTypes } from '../constants';
 import Immutable from 'immutable';
 
+// utils
+import { recursiveMap } from '../utils';
+
 const initialState = Immutable.fromJS({
   items: [],
   levels: [
@@ -31,7 +34,7 @@ export default (state = initialState, action) => {
     case actionTypes.REMOVE_ITEM:
       console.log(action.type);
       const itemsWithoutRemovedItem = state.get('items')
-        .filter((item) => item.id !== action.payload.id)
+        .filterNot((item) => item.id !== action.payload.id)
         .map((item) => {
           const foundItem = state.get('items').find((fi) => fi.parentId === item.id && fi.id !== action.payload.id);
           if (!foundItem) item.hasChildren = false;
@@ -76,12 +79,16 @@ export default (state = initialState, action) => {
       console.log(action.type);
       const { item: closedItem } = action.payload;
       const closedLevelIndex = action.payload.levelIndex + 1;
-      const levelsWithoutClosedLevel = state.get('levels').remove(closedLevelIndex);
+      const levelsWithoutClosedLevel = state.get('levels').filterNot((level) => level.index >= closedLevelIndex);
       const itemsWithClosedItem = state.get('items').map((mi) => {
         if (closedItem.id === mi.id) {
           mi.isOpened = false;
         }
         return mi;
+      });
+      recursiveMap(itemsWithClosedItem, closedItem.id, (item) => {
+        item.isOpened = false;
+        return item;
       });
       return state
         .set('levels', levelsWithoutClosedLevel)
