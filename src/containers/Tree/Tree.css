@@ -3,6 +3,7 @@
  */
 .tree {
   white-space: nowrap;
+  height: 90vh;
   overflow-x: auto;
   padding-bottom: 10px;
 }

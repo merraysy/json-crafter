@@ -1,6 +1,13 @@
 /**
  * header
  */
+.page-header {
+  margin: 0;
+  height: calc(10vh - 10px);
+  line-height: calc(10vh - 10px);
+  margin-bottom: 10px;
+}
 .page-header .title {
   margin: 0;
+  line-height: inherit;
 }

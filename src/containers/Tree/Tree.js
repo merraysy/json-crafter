@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import fileDownload from 'react-file-download';
 
 // actions
 import { treeActions } from '../../actions';
@@ -12,7 +13,7 @@ import Level from '../../components/Level';
 import './Tree.css';
 
 // utils
-import { addKeys, genId } from '../../utils';
+import { addKeys, buildTree, genId } from '../../utils';
 
 class Tree extends Component {
   constructor(props) {
@@ -54,11 +55,13 @@ class Tree extends Component {
       type,
       parentId
     };
-    if (type !== 'object' && type !== 'array') {
-      item.value = '';
-    } else {
+    if (type === 'object' || type === 'array') {
       item.isOpened = false;
       item.hasChildren = false;
+    } else if (type === 'boolean') {
+      item.value = false;
+    } else {
+      item.value = '';
     }
     this.props.dispatch(treeActions.addItem(item));
     this.startEditing(id);
@@ -86,6 +89,7 @@ class Tree extends Component {
 
   generate() {
     console.log('Generating...');
+    fileDownload(JSON.stringify(buildTree(this.props.items)), 'json_craftman.json');
   } // end-generate
 
   render() {
