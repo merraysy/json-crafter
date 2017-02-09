@@ -34,3 +34,10 @@ export const endEditing = (id) => {
     payload: { id }
   };
 }; // end-endEditing
+
+export const openItem = (id) => {
+  return {
+    type: actionTypes.OPEN_ITEM,
+    payload: { id }
+  };
+}; // end-openItem

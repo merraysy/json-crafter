@@ -11,12 +11,28 @@ import { addKeys } from '../../utils';
 
 class ActionsNav extends Component {
   render() {
-    const { type } = this.props.item;
+    const { openItem, removeLevelItem } = this.props;
+    const { id, type } = this.props.item;
+    const removeClickHandler = (e) => {
+      e.preventDefault();
+      removeLevelItem(id);
+    };
+    const openClickHandler = (e) => {
+      e.preventDefault();
+      openItem(id);
+    };
+    // set action btns
     let btns = [];
     if (type === 'object' || type === 'array') {
-      btns.push(<ActionsItem color="success" symbol="&rarr;" {...this.props} />);
+      btns.push(<ActionsItem
+        color="success"
+        symbol="&rarr;"
+        clickHandler={openClickHandler} />);
     }
-    btns.push(<ActionsItem color="danger" symbol="&times;" {...this.props} />);
+    btns.push(<ActionsItem
+      color="danger"
+      symbol="&times;"
+      clickHandler={removeClickHandler} />);
 
     return (
       <nav className="actions-nav">

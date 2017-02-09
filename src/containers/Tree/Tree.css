@@ -3,4 +3,6 @@
  */
 .tree {
   white-space: nowrap;
+  overflow-x: auto;
+  padding-bottom: 10px;
 }

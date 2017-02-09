@@ -2,12 +2,7 @@ import React, { Component } from 'react';
 
 class ActionsItem extends Component {
   render() {
-    const { color, symbol, removeLevelItem } = this.props;
-    const { id } = this.props.item;
-    const clickHandler = (e) => {
-      e.preventDefault();
-      removeLevelItem(id);
-    };
+    const { color, symbol, clickHandler } = this.props;
 
     return (
       <li className="actions-item">
@@ -18,6 +13,7 @@ class ActionsItem extends Component {
 }
 
 ActionsItem.propTypes = {
+  clickHandler: React.PropTypes.func,
   color: React.PropTypes.string,
   symbol: React.PropTypes.string
 };

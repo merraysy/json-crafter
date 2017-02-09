@@ -47,6 +47,10 @@ export default (state = initialState, action) => {
       const itemsWithEditedItem = items.set(editedItemIndex, Object.assign({}, editedItem, { isEditing: false }));
       return state.set('items', itemsWithEditedItem);
       break;
+    case actionTypes.OPEN_ITEM:
+      console.log(action.type);
+      return state.set('levels', levels.push({ parentId: action.payload.id }));
+      break;
     default:
       return state;
   }

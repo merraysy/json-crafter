@@ -5,5 +5,6 @@ export default keyMirror({
   SAVE_ITEM: null,
   REMOVE_ITEM: null,
   START_EDITING: null,
-  END_EDITING: null
+  END_EDITING: null,
+  OPEN_ITEM: null
 });

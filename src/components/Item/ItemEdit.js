@@ -36,7 +36,6 @@ class ItemEdit extends Component {
           onChange={changeHandler} />
         break;
       case 'boolean':
-        console.log(value);
         valueInput = <div className="checkbox">
           <label>
             <input
@@ -73,6 +72,7 @@ class ItemEdit extends Component {
 }
 
 ItemEdit.propTypes = {
+  endEditing: React.PropTypes.func,
   item: React.PropTypes.object,
   saveItem: React.PropTypes.func
 };

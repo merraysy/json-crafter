@@ -21,6 +21,7 @@ class Tree extends Component {
     this.addLevelItem = this.addLevelItem.bind(this);
     this.endEditing = this.endEditing.bind(this);
     this.getLevelItems = this.getLevelItems.bind(this);
+    this.openItem = this.openItem.bind(this);
     this.saveItem = this.saveItem.bind(this);
     this.startEditing = this.startEditing.bind(this);
     this.removeLevelItem = this.removeLevelItem.bind(this);
@@ -62,13 +63,18 @@ class Tree extends Component {
     this.props.dispatch(treeActions.saveItem(data));
   } // end-saveItem
 
+  openItem(id) {
+    this.props.dispatch(treeActions.openItem(id));
+  } // end-openItem
+
   render() {
     const levels = this.props.levels.map((level) => {
       return <Level
         addLevelItem={this.addLevelItem}
         endEditing={this.endEditing}
         items={this.getLevelItems(level.parentId)}
-        parentId={level.parentId}
+        openItem={this.openItem}
+        level={level}
         removeLevelItem={this.removeLevelItem}
         startEditing={this.startEditing}
         saveItem={this.saveItem} />;

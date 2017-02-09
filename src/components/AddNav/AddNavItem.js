@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 
 class AddNavItem extends Component {
   render() {
-    const { addLevelItem, color, typeSymbol, typeName, parentId } = this.props;
+    const { addLevelItem, color, typeSymbol, typeName } = this.props;
+    const { parentId } = this.props.level;
     const clickHandler = (e) => {
       e.preventDefault();
       addLevelItem(typeName, parentId);
